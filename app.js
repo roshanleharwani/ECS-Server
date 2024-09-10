@@ -4,6 +4,7 @@ const app = express()
 const controller = require('./controllers/appController')
 const axios = require('axios')
 const { Groq } = require('groq-sdk'); 
+const { name } = require('ejs')
 
 
 app.set('view engine','ejs')
@@ -18,7 +19,7 @@ app.get('/',(req,res)=>{
 
 
 app.get('/report', async (req, res) => {
-  const barcode = 7622202210433;
+  const barcode = 	5449000000996;
   const uri = `https://world.openfoodfacts.org/api/v1/product/${barcode}.json`;
 
   async function getProductData() {
@@ -27,7 +28,9 @@ app.get('/report', async (req, res) => {
       const data = response.data;
 
       const groq = new Groq({
-        apiKey: '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',
+        // apiKey: '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',
+        apiKey: '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',
+        
       });
 
       const template = `{
@@ -57,7 +60,7 @@ app.get('/report', async (req, res) => {
         }`;
 
       const productName = data['product']['product_name'];
-      const prompt = `You are a Nutrition expert. I want you to provide a JSON response in this exact format **dont give any other text only json response**, based on the product ingredients mandatorily cover each ingredient I provide. If there are any encoded ingredients, give their complete name. The format is: ${template} product name: ${productName} ingredients: ${data['product']['ingredients_text']}`;
+      const prompt = `You are a Nutrition expert. Provide a JSON response only, following this format: ${template}. Include ingredients with health impacts, excluding common ones like salt or water. If ingredients are encoded, give their full names. Use the product name ${productName} and ingredients from ${data['product']['ingredients_text']}.`
 
       const chatCompletion = await groq.chat.completions.create({
         messages: [
@@ -78,13 +81,16 @@ app.get('/report', async (req, res) => {
     }
   }
 
+  
   const data = await getProductData(); // Add 'await' here
 
+  
   if (!data) {
-    return res.status(500).send('Error fetching product data');
+    return res.status(500).render('error');
   }
+  const references = await controller.scraper(data.name + 'health Impacts')
 
-  res.render('report', { data: data }); // Now you have 'data' properly fetched
+  res.render('report', { data: data,references:references }); // Now you have 'data' properly fetched
 });
 
 app.get('/reportGenerate',controller.generate)

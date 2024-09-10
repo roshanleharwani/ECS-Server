@@ -215,16 +215,11 @@
         </div>
         <div class="p-4">
           <ul class="pl-5 my-5 space-y-5 text-xl text-blue-600 list-disc">
+            <% references.forEach((reference)=>{ %>
             <li>
-              <a href="https://www.webmd.com/diet/drinking-cola-good-for-you"
-                >Drinking Cola: Is It Good for You? - WebMD</a
-              >
+              <a href="<%=reference.uri %>"><%= reference.title %></a>
             </li>
-            <li>
-              <a href="https://www.medicalnewstoday.com/articles/297600"
-                >Health risks of Coca-Cola: What it does to the body</a
-              >
-            </li>
+            <% }) %>
           </ul>
         </div>
       </div>
