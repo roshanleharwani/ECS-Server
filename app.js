@@ -2,8 +2,7 @@ const express = require('express')
 const path = require('path')
 const app = express()
 const controller = require('./controllers/appController')
-const axios = require('axios')
-const { Groq } = require('groq-sdk'); 
+
 
 
 app.set('view engine','ejs')

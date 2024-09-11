@@ -88,7 +88,7 @@ scraper = async (topic)=> {
     return searchResults;
   }
 
-  exports.report = async (req, res) => {
+exports.report = async (req, res) => {
     const barcode = 	req.params.barcode;
     const uri = `https://world.openfoodfacts.org/api/v1/product/${barcode}.json`;
   
@@ -98,8 +98,8 @@ scraper = async (topic)=> {
         const data = response.data;
   
         const groq = new Groq({
-          // apiKey: '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',
-          apiKey: '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',
+          apiKey: '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',
+          // apiKey: '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',
           
         });
   
@@ -115,7 +115,7 @@ scraper = async (topic)=> {
               {
                 "ingredient1": {
                   "description": "briefDescription of min 10 words",
-                  "effects": [2-3 harmful effects]
+                  "effects": [2-3 long term effects]
                 }
               }
             ],
@@ -140,8 +140,9 @@ scraper = async (topic)=> {
             },
           ],
           model: 'llama-3.1-70b-versatile',
-          max_tokens: 8000,
-          temperature:0.5
+          // max_tokens: 8000,
+          response_format: {"type": "json_object"}
+          // temperature:0.5
         });
   
         const jsonObj = JSON.parse(chatCompletion.choices[0]?.message?.content || '{}');

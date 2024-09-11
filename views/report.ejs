@@ -39,11 +39,11 @@
         class="flex items-center self-start justify-center p-2 mx-4 text-base font-medium gap-x-2"
       >
         <% const array = ['pink', 'green', 'purple', 'red']; %> <% for (let i =
-        0; i < data.data.productCategory.length; i++){ %> <% const color =
+        0; i < data.data.productCategory.length; i++) { %> <% const color =
         array[i % array.length]; %>
 
         <div
-          class="px-2 font-sans text-black rounded-3xl <%= color === 'pink' ? 'bg-pink-200' : color === 'green' ? 'bg-green-200' : color === 'purple' ? 'bg-purple-200' : 'bg-red-200' %>"
+          class="px-2 font-sans text-black rounded-3xl <%= color === 'pink' ? 'bg-pink-200' : color === 'green' ? 'bg-green-200' : color === 'purple' ? 'bg-purple-200' : 'bg-red-200 shrink-0 md:text-base' %>"
         >
           <%= data.data.productCategory[i] %>
         </div>
@@ -55,7 +55,7 @@
         <div class="my-3 text-2xl font-bold text-gray-600">Facts:</div>
         <% for (let i = 0; i < data.data.productInterestingFacts.length; i++) {
         %>
-        <div class="w-4/5 mx-10 my-2 font-medium text-black">
+        <div class="w-4/5 mx-10 my-2 text-base font-medium text-black">
           <span class="text-2xl font-semibold text-center">•</span>
           <%= data.data.productInterestingFacts[i] %>
         </div>
@@ -65,8 +65,9 @@
       <hr class="self-start w-10/12 my-5 border-4 bg-zinc-700" />
 
       <!-- Scores -->
-      <div class="flex items-center justify-center w-full gap-16 my-5">
-        <!-- Intermediate Risks -->
+      <div
+        class="flex flex-col items-center justify-center w-full gap-16 my-5 md:flex-row"
+      >
         <div class="flex flex-col items-center justify-center gap-5">
           <div
             class="p-2 text-xl font-medium text-green-600 border-b-4 border-green-500"
@@ -74,7 +75,7 @@
             Immediate Risks
           </div>
           <div
-            class="text-2xl text-green-500 bg-green-100 radial-progress"
+            class="text-2xl text-yellow-500 bg-yellow-100 radial-progress"
             style="
               --value: <%= data.data.scoresOutOf100.intermediateRiskScore %>;
               --size: 12rem;
@@ -86,7 +87,6 @@
           </div>
         </div>
 
-        <!-- Health Score -->
         <div class="flex flex-col items-center justify-center gap-5">
           <div
             class="p-2 text-xl font-medium text-yellow-600 border-b-4 border-yellow-500"
@@ -94,7 +94,7 @@
             Health Score
           </div>
           <div
-            class="text-2xl text-yellow-500 bg-yellow-100 radial-progress"
+            class="text-2xl text-green-500 bg-green-100 radial-progress"
             style="
               --value: <%= data.data.scoresOutOf100.healthScore %>;
               --size: 12rem;
@@ -106,7 +106,6 @@
           </div>
         </div>
 
-        <!-- Long Term Risks -->
         <div class="flex flex-col items-center justify-center gap-5">
           <div
             class="p-2 text-xl font-medium text-red-600 border-b-4 border-red-500"
@@ -129,27 +128,35 @@
 
       <!-- Ingredients Breakdown -->
       <div
-        class="self-start p-2 px-4 m-8 font-sans text-3xl font-bold text-black border-b-4 border-zinc-600"
+        class="self-start p-2 mt-8 mb-8 ml-2 mr-2 font-sans text-2xl font-bold text-black border-b-4 md:px-4 md:m-8 md:text-3xl border-zinc-600"
       >
         Ingredients Breakdown
       </div>
 
-      <% data.data.ingredients.forEach((ingredient, index) => { %> <% const
-      ingredientName = Object.keys(ingredient)[0]; %> <% const ingredientInfo =
+      <% data.data.ingredients.forEach((ingredient, index) => { const
+      ingredientName = Object.keys(ingredient)[0]; const ingredientInfo =
       ingredient[ingredientName]; %>
 
+      <!-- Container for each ingredient with margin-bottom added for spacing -->
       <div
-        class="<%= index % 2 === 0 ? 'self-end rounded-s-full p-4 px-14' : 'self-start rounded-e-full p-2' %> w-10/12 my-5 bg-yellow-100"
+        class="<%= index % 2 === 0 ? 'rounded-s-2xl pl-8 ml-10 self-end' : 'self-start mr-8 rounded-e-2xl' %> bg-yellow-100 p-4 md:pr-4 space-y-4 mb-8"
       >
-        <div class="mx-4 my-2 text-3xl font-semibold text-black">
+        <!-- Ingredient Name -->
+        <div class="text-xl font-bold text-black md:text-2xl">
           <%= ingredientName %>
         </div>
+
+        <!-- Description -->
         <div class="mx-6 my-2 text-xl font-medium text-zinc-700">
-          <strong>Description: </strong> <%= ingredientInfo.description %>.
+          <strong>Description:</strong> <%= ingredientInfo.description %>.
         </div>
+
+        <!-- Effects Title -->
         <div class="mx-6 my-2 text-lg font-medium text-zinc-700">
-          <strong>Effects:</strong>
+          <strong>Long Term Effects:</strong>
         </div>
+
+        <!-- Effects List or Message -->
         <div class="mx-8 my-2 space-y-2 text-lg font-medium text-zinc-600">
           <% if (ingredientInfo.effects.length > 0) { %>
           <ul class="pl-4 list-disc">
@@ -162,7 +169,9 @@
           <% } %>
         </div>
       </div>
+
       <% }); %>
+
       <hr class="self-start w-10/12 my-5 border-4 bg-zinc-700" />
 
       <div
@@ -193,7 +202,6 @@
           Alternatives
         </div>
         <div class="my-5">
-          <!-- Corrected <ul> instead of <ui> -->
           <ul class="pl-5 space-y-4 text-lg font-medium list-disc">
             <% data.data.betterProductAlternatives.forEach((alternative) => { %>
             <li>
