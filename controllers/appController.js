@@ -1,60 +1,78 @@
 const axios = require('axios')
 const { Groq } = require('groq-sdk'); 
+const fs = require('node:fs')
 const puppeteer = require('puppeteer')
 const path = require('path')
+const QRCode = require('qrcode');
+const bodyParser = require('body-parser');
 
 exports.generate = async (req, res) => {
-    const barcode = req.params.barcode;
-    let browser;
-    try {
-        browser = await puppeteer.launch();
+  const barcode = req.params.barcode;
+  const filePath = path.join(__dirname, '../public/files/', `${barcode}.pdf`); // Absolute path
 
-        const page = await browser.newPage();
+  // If the PDF already exists, return it
+  if (fs.existsSync(filePath)) {
+      res.set({
+          'Content-Type': 'application/pdf',
+          'Content-Length': fs.statSync(filePath).size
+      });
+      return res.sendFile(filePath);
+  }
 
-        // Set a timeout for navigation
-        await page.goto(`${req.protocol}://${req.get('host')}/report/barcode`, {
-            waitUntil: 'networkidle2',
-        });
+  let browser;
+  try {
+      // Step 1: Request the report to ensure it's generated successfully
+      const reportUrl = `${req.protocol}://${req.get('host')}/report/${barcode}`;
+      const reportResponse = await axios.get(reportUrl);
 
-        await page.setViewport({ width: 1680, height: 1050 });
+      // If the report request fails or returns an error status, abort PDF generation
+      if (reportResponse.status !== 200) {
+          return res.status(500).send('Error generating report, PDF not created.');
+      }
 
-        // Generate the PDF file path
-        const filePath = path.join(__dirname, '../public/files/', `${new Date().getTime()}.pdf`);
+      // Step 2: Proceed with generating the PDF
+      browser = await puppeteer.launch({ headless: true });
+      const page = await browser.newPage();
 
-        // Generate the PDF
-        const pdf = await page.pdf({
-            path: filePath,
-            printBackground: true,
-            format: 'A4'
-        });
+      await page.goto(reportUrl, {
+          waitUntil: 'networkidle2',
+      });
+      await page.setViewport({ width: 1680, height: 1050 });
 
-        await browser.close();
+      // Generate the PDF
+      await page.pdf({
+          path: filePath,
+          printBackground: true,
+          format: 'A4',
+      });
 
-        // Set response headers for PDF file
-        res.set({
-            'Content-Type': 'application/pdf',
-            'Content-Length': pdf.length
-        });
+      await browser.close();
 
-        // Send the generated PDF file
-        res.sendFile(filePath);
+      // Set response headers for PDF file and send it
+      res.set({
+          'Content-Type': 'application/pdf',
+          'Content-Length': fs.statSync(filePath).size,
+      });
+      res.sendFile(filePath);
 
-    } catch (error) {
-        console.log(error.message);
-        if (browser) {
-            await browser.close(); // Ensure browser is closed in case of error
-        }
-        res.status(500).send('Error generating PDF');
-    }
+  } catch (error) {
+      console.error('Error during PDF generation:', error.message);
+
+      if (browser) {
+          await browser.close(); // Ensure browser is closed in case of error
+      }
+
+      res.status(500).send('Error generating PDF');
+  }
 };
-
-
-scraper = async (topic)=> {
-    const browser = await puppeteer.launch({ headless: true });
-    const page = await browser.newPage();
-  
-    // Construct the search URL
-    const searchUrl = `https://www.google.com/search?q=${encodeURIComponent(topic)}`;
+    
+    
+    scraper = async (topic)=> {
+      const browser = await puppeteer.launch({ headless: true });
+      const page = await browser.newPage();
+      
+      // Construct the search URL
+      const searchUrl = `https://www.google.com/search?q=${encodeURIComponent(topic)}`;
   
     await page.goto(searchUrl, { waitUntil: 'domcontentloaded', timeout: 0 });
   
@@ -141,7 +159,7 @@ exports.report = async (req, res) => {
           ],
           model: 'llama-3.1-70b-versatile',
           // max_tokens: 8000,
-          response_format: {"type": "json_object"}
+          // response_format: {"type": "json_object"}
           // temperature:0.5
         });
   
@@ -164,3 +182,30 @@ exports.report = async (req, res) => {
   
     res.render('report', { data: data,references:references });
   }
+
+  exports.wifi = async (req,res)=>{
+
+    return res.render('qr')
+
+  }
+
+  exports.wifiqr = (req,res)=>{
+
+      const {ssid,pass} = req.body;
+
+      const data = `${ssid}|${pass}`
+
+      QRCode.toDataURL(data, (err, url) => {
+        if (err) {
+          res.status(500).send('Error generating QR code');
+        } else {
+
+          return res.render('wifiqr',{url:url})
+
+         
+        }
+      });
+
+
+
+  } 

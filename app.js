@@ -20,6 +20,9 @@ app.get('/report/:barcode',controller.report )
 
 app.get('/reportGenerate/:barcode',controller.generate)
 
-app.listen(3000)
+app.get('/wifi',controller.wifi)
 
+app.post("/wifi-QR",controller.wifiqr)
+
+app.listen(3000)
 

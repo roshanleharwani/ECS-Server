@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" class="w-full h-full">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="/stylesheets/output.css" />
+  </head>
+  <body class="w-full h-full">
+    <main class="flex items-center justify-center w-full h-full">
+      
+        <form class="flex flex-col items-center justify-center w-full h-full gap-6" method="post" action="/wifi-QR">
+          <input
+            type="text"
+            name="ssid"
+            id="ssid"
+            required
+            placeholder="Wi-Fi SSID "
+            class="w-full max-w-xs input input-bordered input-primary"
+          />
+          <input
+            type="password"
+            name="pass"
+            id="pass"
+            required
+            placeholder="Wi-Fi Password"
+            class="w-full max-w-xs input input-bordered input-primary"
+          />
+          <input type="submit" value="Generate"
+            class="text-xl text-white btn btn-wide bg-rose-500 hover:bg-rose-600"
+          >
+            
+          </input>
+        </form>
+    
+    </main>
+  </body>
+</html>

@@ -16,7 +16,8 @@
     "groq": "^3.57.1",
     "groq-sdk": "^0.7.0",
     "node-fetch": "^2.7.0",
-    "puppeteer": "^23.3.0"
+    "puppeteer": "^23.3.0",
+    "qrcode": "^1.5.4"
   },
   "devDependencies": {
     "daisyui": "^4.12.10",
