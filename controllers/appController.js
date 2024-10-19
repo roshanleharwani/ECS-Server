@@ -124,11 +124,7 @@ exports.report = async (req, res) => {
         const template = `{
             "productCategory": [2-3 categories],
             "productInterestingFacts": [2-3 each fact of min 10 words],
-            "scoresOutOf100": {
-              "healthScore": score,
-              "intermediateRiskScore": score,
-              "longTermRiskScore": score
-            },
+            "consumptionIndicator": [if safe give 0 else if concern give 90 else if avoid give 180  ]
             "ingredients": [
               {
                 "ingredient1": {
@@ -163,7 +159,7 @@ exports.report = async (req, res) => {
           // temperature:0.5
         });
   
-        const jsonObj = JSON.parse(chatCompletion.choices[0]?.message?.content || '{}');
+        const jsonObj = await JSON.parse(chatCompletion.choices[0]?.message?.content || '{}');
         return { name: productName, data: jsonObj };
       } catch (error) {
         console.error('Error fetching data or completing chat:', error);

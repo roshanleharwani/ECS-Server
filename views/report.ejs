@@ -1,146 +1,112 @@
 <!DOCTYPE html>
-<html lang="en" class="bg-yellow-50">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Product Details</title>
-    <link rel="stylesheet" href="/stylesheets/output.css" />
-    <style>
-      .watermark {
-        position: relative;
-      }
+<html lang="en" class="bg-yellow-" id="report-content">
 
-      .watermark::before {
-        content: "";
-        background-image: url("/images/watermark.png");
-        background-repeat: no-repeat;
-        background-position: center;
-        background-size: 50%;
-        opacity: 0.1;
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        pointer-events: none;
-      }
-    </style>
-  </head>
-  <body class="w-full min-h-screen watermark bg-yellow-50">
-    <main class="flex flex-col items-center justify-center">
-      <div
-        class="self-start p-2 px-4 m-4 font-sans text-5xl font-bold text-black border-b-4 border-green-600"
-      >
-        <%= data.name %>
-      </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Product Details</title>
+  <link rel="stylesheet" href="/stylesheets/output.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
 
-      <!-- Product Categories -->
-      <div
-        class="flex flex-wrap items-center self-start justify-center flex-grow p-2 mx-4 text-base font-medium gap-x-2"
-      >
-        <% const array = ['pink', 'green', 'purple', 'red']; %> <% for (let i =
-        0; i < data.data.productCategory.length; i++) { %> <% const color =
-        array[i % array.length]; %>
+  <style>
+    .watermark {
+      position: relative;
+    }
 
-        <div
-          class="px-2 font-sans text-black rounded-3xl <%= color === 'pink' ? 'bg-pink-200' : color === 'green' ? 'bg-green-200' : color === 'purple' ? 'bg-purple-200' : 'bg-red-200 shrink-0 md:text-base' %>"
-        >
-          <%= data.data.productCategory[i] %>
-        </div>
-        <% } %>
-      </div>
+    .watermark::before {
+      content: "";
+      background-image: url("/images/watermark.png");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 50%;
+      opacity: 0.1;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+  </style>
+</head>
 
-      <!-- Interesting Facts -->
-      <div class="self-start mx-5 my-5">
-        <div class="my-3 text-2xl font-bold text-gray-600">Facts:</div>
-        <% for (let i = 0; i < data.data.productInterestingFacts.length; i++) {
-        %>
+<body class="w-full min-h-screen watermark bg-yellow-50">
+  <button class="self-end m-4 mb-0 btn btn-xs sm:btn-sm md:btn-md lg:btn-md before:bg-green-400"
+    id="downloadBtn">Download
+    Report</button>
+  <main class="flex flex-col items-center justify-center">
+    <div class="self-start p-2 px-4 m-4 font-sans text-5xl font-bold text-black border-b-4 border-green-600">
+      <%= data.name %>
+    </div>
+
+    <!-- Product Categories -->
+    <div class="flex flex-wrap items-center self-start justify-center flex-grow p-2 mx-4 text-base font-medium gap-x-2">
+      <% const array=['pink', 'green' , 'purple' , 'red' ]; %>
+        <% for (let i=0; i < data.data.productCategory.length; i++) { %>
+          <% const color=array[i % array.length]; %>
+
+            <div
+              class="px-2 font-sans text-black rounded-3xl <%= color === 'pink' ? 'bg-pink-200' : color === 'green' ? 'bg-green-200' : color === 'purple' ? 'bg-purple-200' : 'bg-red-200 shrink-0 md:text-base' %>">
+              <%= data.data.productCategory[i] %>
+            </div>
+            <% } %>
+    </div>
+
+    <!-- Interesting Facts -->
+    <div class="self-start mx-5 my-5">
+      <div class="my-3 text-2xl font-bold text-gray-600">Facts:</div>
+      <% for (let i=0; i < data.data.productInterestingFacts.length; i++) { %>
         <div class="w-4/5 mx-10 my-2 text-base font-medium text-black">
           <span class="text-2xl font-semibold text-center">•</span>
           <%= data.data.productInterestingFacts[i] %>
         </div>
         <% } %>
+    </div>
+
+    <hr class="self-start w-10/12 my-5 border-4 bg-zinc-700" />
+    <div class="px-8 py-2 mt-5 mb-20 text-2xl font-semibold text-red-400 border-b-4 border-red-400 md:text-4xl">
+      <h1>
+        Consumption Risk Indicator
+      </h1>
+    </div>
+
+    <div class="flex flex-col items-center justify-center w-screen mb-10">
+      <div class="tooltip tooltip-top before:bg-yellow-300 before:text-black before:text-base caution"
+        data-tip="Consume in moderation to avoid potential health risks.">
+        <button class="mb-2 text-black bg-yellow-400 border-none hover:bg-yellow-500 btn ">Caution</button>
       </div>
-
-      <hr class="self-start w-10/12 my-5 border-4 bg-zinc-700" />
-
-      <!-- Scores -->
-      <div
-        class="flex flex-col items-center justify-center w-full gap-16 my-5 md:flex-row"
-      >
-        <div class="flex flex-col items-center justify-center gap-5">
-          <div
-            class="p-2 text-xl font-medium text-yellow-600 border-b-4 border-yellow-500"
-          >
-            Immediate Risks
-          </div>
-          <div
-            class="text-2xl text-yellow-500 bg-yellow-100 radial-progress"
-            style="
-              --value: <%= data.data.scoresOutOf100.intermediateRiskScore %>;
-              --size: 12rem;
-              --thickness: 1.75rem;
-            "
-            role="progressbar"
-          >
-            <%= data.data.scoresOutOf100.intermediateRiskScore %>%
-          </div>
+      <div class="flex items-center justify-around gap-4">
+        <div class="text-xl tooltip tooltip-left before:bg-green-300 before:text-black before:text-base safe"
+          data-tip="This product is safe to consume with minimal health concerns.">
+          <button class="bg-green-400 border-none btn-success btn hover:bg-green-500">Safe</button>
         </div>
 
-        <div class="flex flex-col items-center justify-center gap-5">
-          <div
-            class="p-2 text-xl font-medium text-green-600 border-b-4 border-green-500"
-          >
-            Health Score
-          </div>
-          <div
-            class="text-2xl text-green-500 bg-green-100 radial-progress"
-            style="
-              --value: <%= data.data.scoresOutOf100.healthScore %>;
-              --size: 12rem;
-              --thickness: 1.75rem;
-            "
-            role="progressbar"
-          >
-            <%= data.data.scoresOutOf100.healthScore %>%
+        <div class="border-8 border-b-0 rounded-full md:p-12 border-l-green-500 border-t-yellow-500 border-r-red-500">
+          <div class="flex items-center justify-center w-48 h-48 rounded-full md:w-64 md:h-64">
+            <img id="rotateImage" class="select-none h-36 md:h-full " src="/public/images/marker.png" alt="">
           </div>
         </div>
-
-        <div class="flex flex-col items-center justify-center gap-5">
-          <div
-            class="p-2 text-xl font-medium text-red-600 border-b-4 border-red-500"
-          >
-            Long Term Risks
-          </div>
-          <div
-            class="text-2xl text-red-500 bg-red-100 radial-progress"
-            style="
-              --value: <%= data.data.scoresOutOf100.longTermRiskScore %>;
-              --size: 12rem;
-              --thickness: 1.75rem;
-            "
-            role="progressbar"
-          >
-            <%= data.data.scoresOutOf100.longTermRiskScore %>%
-          </div>
+        <div class="tooltip tooltip-right before:bg-red-300 before:text-black before:text-base avoid"
+          data-tip="Avoid this product due to significant health risks.">
+          <button class="mb-2 bg-red-400 border-none hover:bg-red-500 btn-error btn ">Avoid</button>
         </div>
       </div>
 
-      <!-- Ingredients Breakdown -->
-      <div
-        class="self-start p-2 mt-8 mb-8 ml-2 mr-2 font-sans text-2xl font-bold text-black border-b-4 md:px-4 md:m-8 md:text-3xl border-zinc-600"
-      >
-        Ingredients Breakdown
-      </div>
+    </div>
 
-      <% data.data.ingredients.forEach((ingredient, index) => { const
+    <!-- Ingredients Breakdown -->
+    <div
+      class="self-start p-2 mt-8 mb-8 ml-2 mr-2 font-sans text-2xl font-bold text-black border-b-4 md:px-4 md:m-8 md:text-3xl border-zinc-600">
+      Ingredients Breakdown
+    </div>
+
+    <% data.data.ingredients.forEach((ingredient, index)=> { const
       ingredientName = Object.keys(ingredient)[0]; const ingredientInfo =
       ingredient[ingredientName]; %>
 
       <!-- Container for each ingredient with margin-bottom added for spacing -->
       <div
-        class="<%= index % 2 === 0 ? 'rounded-s-2xl pl-8 ml-10 self-end' : 'self-start mr-8 rounded-e-2xl' %> bg-yellow-100 p-4 md:pr-4 space-y-4 mb-8"
-      >
+        class="<%= index % 2 === 0 ? 'rounded-s-2xl pl-8 ml-10 self-end' : 'self-start mr-8 rounded-e-2xl' %> bg-yellow-100 p-4 md:pr-4 space-y-4 mb-8">
         <!-- Ingredient Name -->
         <div class="text-xl font-bold text-black md:text-2xl">
           <%= ingredientName %>
@@ -148,7 +114,8 @@
 
         <!-- Description -->
         <div class="mx-6 my-2 text-xl font-medium text-zinc-700">
-          <strong>Description:</strong> <%= ingredientInfo.description %>.
+          <strong>Description:</strong>
+          <%= ingredientInfo.description %>.
         </div>
 
         <!-- Effects Title -->
@@ -158,79 +125,115 @@
 
         <!-- Effects List or Message -->
         <div class="mx-8 my-2 space-y-2 text-lg font-medium text-zinc-600">
-          <% if (ingredientInfo.effects.length > 0) { %>
-          <ul class="pl-4 list-disc">
-            <% ingredientInfo.effects.forEach(effect => { %>
-            <li><%= effect %></li>
-            <% }); %>
-          </ul>
-          <% } else { %>
-          <div>No known effects.</div>
-          <% } %>
+          <% if (ingredientInfo.effects.length> 0) { %>
+            <ul class="pl-4 list-disc">
+              <% ingredientInfo.effects.forEach(effect=> { %>
+                <li>
+                  <%= effect %>
+                </li>
+                <% }); %>
+            </ul>
+            <% } else { %>
+              <div>No known effects.</div>
+              <% } %>
         </div>
       </div>
 
       <% }); %>
 
-      <hr class="self-start w-10/12 my-5 border-4 bg-zinc-700" />
+        <hr class="self-start w-10/12 my-5 border-4 bg-zinc-700" />
 
-      <div
-        class="flex flex-col items-center justify-center w-11/12 p-4 my-8 text-black bg-green-300 rounded-xl"
-      >
-        <div
-          class="px-4 py-2 text-2xl font-semibold border-b-4 border-zinc-500"
-        >
-          Recommendations
+        <div class="flex flex-col items-center justify-center w-11/12 p-4 my-8 text-black bg-green-300 rounded-xl">
+          <div class="px-4 py-2 text-2xl font-semibold border-b-4 border-zinc-500">
+            Recommendations
+          </div>
+          <div class="my-5">
+            <ul class="pl-5 space-y-4 text-lg font-medium text-gray-700 list-disc">
+              <% data.data.healthRecommendations.forEach((Recommendations)=>{ %>
+                <li>
+                  <%=Recommendations%>
+                </li>
+                <% })%>
+            </ul>
+          </div>
         </div>
-        <div class="my-5">
-          <ul
-            class="pl-5 space-y-4 text-lg font-medium text-gray-700 list-disc"
-          >
-            <% data.data.healthRecommendations.forEach((Recommendations)=>{ %>
-            <li><%=Recommendations%></li>
-            <% })%>
-          </ul>
-        </div>
-      </div>
 
-      <div
-        class="flex flex-col items-center justify-center w-11/12 p-4 my-5 rounded-xl text-zinc-700 bg-sky-300"
-      >
-        <div
-          class="px-4 py-2 text-2xl font-semibold border-b-4 border-zinc-500"
-        >
-          Alternatives
+        <div class="flex flex-col items-center justify-center w-11/12 p-4 my-5 rounded-xl text-zinc-700 bg-sky-300">
+          <div class="px-4 py-2 text-2xl font-semibold border-b-4 border-zinc-500">
+            Alternatives
+          </div>
+          <div class="my-5">
+            <ul class="pl-5 space-y-4 text-lg font-medium list-disc">
+              <% data.data.betterProductAlternatives.forEach((alternative)=> { %>
+                <li>
+                  <% const name=Object.keys(alternative)[0]; %>
+                    <strong class="text-xl">
+                      <%= name %>:
+                    </strong>
+                    <!-- Access briefBenefit using the dynamic key -->
+                    <%= alternative[name].briefBenefit %>
+                </li>
+                <% }) %>
+            </ul>
+          </div>
         </div>
-        <div class="my-5">
-          <ul class="pl-5 space-y-4 text-lg font-medium list-disc">
-            <% data.data.betterProductAlternatives.forEach((alternative) => { %>
-            <li>
-              <% const name = Object.keys(alternative)[0]; %>
-              <strong class="text-xl"><%= name %>:</strong>
-              <!-- Access briefBenefit using the dynamic key -->
-              <%= alternative[name].briefBenefit %>
-            </li>
-            <% }) %>
-          </ul>
-        </div>
-      </div>
 
-      <div class="flex flex-col items-center justify-center w-full my-5">
-        <div
-          class="p-2 px-4 text-3xl font-semibold text-black border-b-4 border-zinc-600"
-        >
-          References
+        <div class="flex flex-col items-center justify-center w-full my-5">
+          <div class="p-2 px-4 text-3xl font-semibold text-black border-b-4 border-zinc-600">
+            Top Articles
+          </div>
+          <div class="p-4">
+            <ul class="pl-5 my-5 space-y-5 text-xl text-blue-600 list-disc">
+              <% references.forEach((reference)=>{ %>
+                <li>
+                  <a href="<%=reference.uri %>">
+                    <%= reference.title %>
+                  </a>
+                </li>
+                <% }) %>
+            </ul>
+          </div>
         </div>
-        <div class="p-4">
-          <ul class="pl-5 my-5 space-y-5 text-xl text-blue-600 list-disc">
-            <% references.forEach((reference)=>{ %>
-            <li>
-              <a href="<%=reference.uri %>"><%= reference.title %></a>
-            </li>
-            <% }) %>
-          </ul>
-        </div>
-      </div>
-    </main>
-  </body>
+  </main>
+</body>
+<script>
+  document.getElementById('downloadBtn').addEventListener('click', function () {
+    var element = document.getElementById('report-content');
+    var downloadBtn = document.getElementById('downloadBtn');
+
+    // Temporarily hide the download button
+    downloadBtn.style.display = 'none';
+
+    // Use a timeout to ensure the button is hidden before generating the PDF
+    setTimeout(function () {
+      html2pdf()
+        .from(element)
+        .set({
+          margin: [0, 0, 0, 0], // Set margins to 0 to remove extra spacing
+          filename: `<%=data.name%>-Report.pdf`,
+          image: { type: 'jpeg', quality: 0.98 },
+          html2canvas: { scale: 2 },
+          jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+        })
+        .save()
+        .then(function () {
+          // Show the download button again after the PDF is generated
+          downloadBtn.style.display = 'block';
+        });
+    }, 100); // Short delay to allow button to disappear
+  });
+</script>
+<script>
+  const value = `<%= data.data.consumptionIndicator %>`;
+  document.getElementById("rotateImage").style.transform = `rotate(${value}deg)`;
+  if (value == 0) {
+    document.querySelector(".safe").classList.add("md:tooltip-open");
+  } else if (value == 90) {
+    document.querySelector(".caution").classList.add("md:tooltip-open");
+  } else if (value == 180) {
+    document.querySelector(".avoid").classList.add("md:tooltip-open");
+  }
+</script>
+
+
 </html>

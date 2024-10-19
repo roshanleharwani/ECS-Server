@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en" class="overflow-x-hidden bg-yellow-50">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .watermark {
+      position: relative;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+
+    .watermark::before {
+      content: "";
+      background-image: url("/images/watermark.png");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 50%;
+      opacity: 0.1;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+  </style>
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body class="w-full min-h-screen watermark bg-yellow-50">
+  <main class="flex flex-col items-center justify-center">
+
+    <div class="self-start p-2 px-4 m-4 font-sans text-5xl font-bold text-black border-b-4 border-green-600">Coca Cola
+    </div>
+    <div class="flex items-center self-start justify-center p-2 mx-4 text-base font-medium gap-x-2">
+      <div class="px-2 font-sans text-xs text-black bg-pink-200 rounded-3xl shrink-0 md:text-base">
+        Beverage
+      </div>
+      <div class="flex px-2 font-sans text-xs text-black bg-green-200 rounded-3xl shrink-0 md:text-base">
+        Soft Drink
+      </div>
+      <div class="px-2 font-sans text-xs text-black bg-purple-200 rounded-3xl shrink-0 md:text-base">
+        Soda Drink
+      </div>
+    </div>
+    <div class="self-start mx-5 my-5">
+      <div class="my-3 text-2xl font-bold text-gray-600">Facts:</div>
+      <div class="w-4/5 mx-10 my-2 font-medium text-black">
+        <span class="text-2xl font-semibold text-center">•</span>
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Distinctio
+        necessitatibus consectetur eligendi atque blanditiis id? Unde
+        aspernatur veniam sint illum nesciunt aliquam iste ipsam velit nostrum
+        quia voluptatum, veritatis, reiciendis fuga. Obcaecati.
+      </div>
+      <div class="w-4/5 mx-10 my-2 font-medium text-black">
+        <span class="text-2xl font-semibold text-center">•</span>
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Distinctio
+        necessitatibus consectetur eligendi atque blanditiis id? Unde
+        aspernatur veniam sint illum nesciunt aliquam iste ipsam velit nostrum
+        quia voluptatum, veritatis, reiciendis fuga. Obcaecati.
+      </div>
+    </div>
+
+    <hr class="self-start w-10/12 my-5 border-4 bg-zinc-700" />
+
+    <div class="px-8 py-2 mt-5 mb-20 text-2xl font-semibold text-red-400 border-b-4 border-red-400 md:text-4xl">
+      <h1>
+        Consumption Risk Indicator
+      </h1>
+    </div>
+
+    <main class="flex flex-col items-center justify-center w-screen mb-10">
+      <div class="md:tooltip tooltip-top before:bg-yellow-300 before:text-black before:text-base caution"
+        data-tip="Consume in moderation to avoid potential health risks.">
+        <button class="mb-2 text-black bg-yellow-400 border-none hover:bg-yellow-500 btn ">Caution</button>
+      </div>
+      <div class="flex items-center justify-around gap-4">
+        <div class="text-xl md:tooltip tooltip-left before:bg-green-300 before:text-black before:text-base safe"
+          data-tip="This product is safe to consume with minimal health concerns.">
+          <button class="bg-green-400 border-none btn-success btn hover:bg-green-500">Safe</button>
+        </div>
+
+        <div class="border-8 border-b-0 rounded-full md:p-12 border-l-green-500 border-t-yellow-500 border-r-red-500">
+          <div class="flex items-center justify-center w-48 h-48 rounded-full md:w-64 md:h-64">
+            <img id="rotateImage" class="select-none h-36 md:h-full " src="/public/images/marker.png" alt="">
+          </div>
+        </div>
+        <div class="md:tooltip tooltip-right before:bg-red-300 before:text-black before:text-base avoid"
+          data-tip="Avoid this product due to significant health risks.">
+          <button class="mb-2 bg-red-400 border-none hover:bg-red-500 btn-error btn ">Avoid</button>
+        </div>
+      </div>
+
+    </main>
+
+
+    <div
+      class="self-start p-2 mt-8 mb-8 ml-2 mr-2 font-sans text-2xl font-bold text-black border-b-4 md:px-4 md:m-8 md:text-3xl border-zinc-600">
+      Ingredients Breakdown
+    </div>
+
+    <div class="flex flex-col items-center justify-center w-full p-0 space-y-5">
+      <div class="self-start p-4 pr-4 mr-8 space-y-4 text-black bg-yellow-100 rounded-e-2xl md:pr-4">
+        <div class="text-xl font-bold md:text-2xl ">
+          High Fructose Corn-Syrup
+        </div>
+        <div class="mx-6 my-2 text-xl font-medium text-zinc-700">
+          <strong>Description:</strong> The primary sweetener in Coca-Cola in
+          the U.S. is high-fructose corn syrup (HFCS), while in some other
+          countries (e.g., Mexico), it is cane sugar.
+        </div>
+        <div class="mx-6 my-2 text-lg font-medium text-zinc-700">
+          <strong>Harmful Effects:</strong>
+        </div>
+        <div class="mx-8 my-2 space-y-2 text-lg font-medium text-zinc-600">
+          <ul class="pl-4 list-disc">
+            <li>Obesity and Weight Gain</li>
+            <li>Diabetes</li>
+            <li>Tooth Decay</li>
+            <li>Metabolic Syndrome</li>
+          </ul>
+        </div>
+      </div>
+
+
+      <div class="self-end p-4 pl-8 ml-10 space-y-4 text-black bg-yellow-100 rounded-s-2xl md:pr-32 ">
+        <div class="text-xl font-bold md:text-2xl">
+          Caramel Color (E150d)
+        </div>
+        <div class="mx-6 my-2 text-xl font-medium text-zinc-700">
+          <strong> Description: </strong> A coloring agent made by heating
+          sugar, often with acids or alkalis, giving Coca-Cola its dark brown
+          color.
+        </div>
+        <div class="mx-6 my-2 text-lg font-medium text-zinc-700">
+          <strong>Harmful Effects:</strong>
+        </div>
+        <div class="mx-8 my-2 space-y-2 text-lg font-medium text-zinc-600">
+          <ul class="pl-4 list-disc">
+            <li>Carcinogen Risk</li>
+            <li>Allergy Risk</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="self-start p-4 pr-4 mr-8 space-y-4 text-black bg-yellow-100 rounded-e-2xl md:pr-4">
+        <div class="text-xl font-bold md:text-2xl">
+          Phosphoric Acid
+        </div>
+        <div class="mx-6 my-2 text-xl font-medium text-zinc-700">
+          <strong> Description: </strong> An acid used to add a sharp, tangy
+          flavor and act as a preservative.
+        </div>
+        <div class="mx-6 my-2 text-lg font-medium text-zinc-700">
+          <strong>Harmful Effects:</strong>
+        </div>
+        <div class="mx-8 my-2 space-y-2 text-lg font-medium text-zinc-600">
+          <ul class="pl-4 list-disc">
+            <li>Tooth Erosion</li>
+            <li>Osteoporosis</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <hr class="self-start w-10/12 my-5 border-4 bg-zinc-700" />
+
+
+    <div class="flex flex-col items-center justify-center w-11/12 p-4 my-8 text-black bg-green-300 rounded-xl">
+      <div class="px-4 py-2 text-2xl font-semibold border-b-4 border-zinc-500">
+        Recommendations
+      </div>
+      <div class="my-5">
+        <ul class="pl-5 space-y-4 text-lg font-medium text-gray-700 list-disc">
+          <li>
+            Sodas are high in sugar and empty calories, which contribute to
+            weight gain and increase the risk of obesity and type 2 diabetes.
+            It's recommended to limit consumption to occasional treats rather
+            than daily habits.
+          </li>
+          <li>
+            Drinking water regularly is essential. Soda doesn’t hydrate as
+            well as water and can lead to dehydration, especially if consumed
+            in large amounts.
+          </li>
+          <li>
+            The high sugar content and acidity in soda can cause tooth decay
+            and enamel erosion. Brushing your teeth after drinking soda or
+            using a straw can help minimize contact with your teeth.
+          </li>
+        </ul>
+      </div>
+    </div>
+    <hr class="self-start w-10/12 my-5 border-4 bg-zinc-700" />
+
+    <div class="flex flex-col items-center justify-center w-11/12 p-4 my-5 rounded-xl text-zinc-700 bg-sky-300">
+      <div class="px-4 py-2 text-2xl font-semibold border-b-4 border-zinc-500">
+        Alternatives
+      </div>
+      <div class="my-5">
+        <ui class="pl-5 space-y-4 text-lg font-medium list-disc">
+          <li>
+            <strong>Sparkling Water with Natural Flavors:</strong> Sparkling
+            water provides the fizzy sensation of soda without the sugar and
+            calories. You can add a slice of lemon, lime, or berries to infuse
+            flavor naturally.
+          </li>
+          <li>
+            <strong>Coconut Water:</strong>Coconut water is naturally low in
+            calories, contains essential electrolytes, and provides hydration.
+          </li>
+          <li>
+            <strong>Freshly Squeezed Lemonade:</strong> A homemade lemonade
+            using minimal natural sweeteners like honey or agave can be
+            refreshing and contains far less sugar than sodas.
+          </li>
+          <li>
+            <strong>Low-Sugar Electrolyte Drinks:</strong>
+            Some low-sugar or sugar-free electrolyte drinks (like certain
+            sports drinks) are great for hydration after workouts without the
+            excessive sugars found in soda.
+          </li>
+        </ui>
+      </div>
+    </div>
+
+    <div class="flex flex-col items-center justify-center w-full my-5">
+      <div class="p-2 px-4 text-3xl font-semibold text-black border-b-4 border-zinc-600">
+        References
+      </div>
+      <div class="p-4">
+        <ul class="pl-5 my-5 space-y-5 text-xl text-blue-600 list-disc">
+          <li>
+            <a href="https://www.webmd.com/diet/drinking-cola-good-for-you">Drinking Cola: Is It Good for You? -
+              WebMD</a>
+          </li>
+          <li>
+            <a href="https://www.medicalnewstoday.com/articles/297600">Health risks of Coca-Cola: What it does to the
+              body</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </main>
+</body>
+<script>
+  // Example data for rotation in degrees, substitute this with the actual data you'll receive
+  const rotationData = 180; // You can replace this with your dynamic data
+
+  // Apply the rotation to the image
+  document.getElementById("rotateImage").style.transform = `rotate(${rotationData}deg)`;
+</script>
+
+</html>

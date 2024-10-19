@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" type="text/css" />
+
+</head>
+
+<body class="text-black bg-white">
+    <main class="flex flex-col items-center justify-center w-screen min-h-screen">
+        <div class="tooltip tooltip-top tooltip-warning"
+            data-tip="Product should be consume in moderation to prevent any health issues">
+            <button class="mb-2 border-none btn-warning btn">Moderate Risk</button>
+        </div>
+        <div class="flex items-center justify-around gap-4">
+            <div class="text-xl tooltip tooltip-left tooltip-success"
+                data-tip="Product can be consumed without any major health risk ">
+                <button class="bg-green-100 border-none btn-success btn ">Lower Risk</button>
+            </div>
+
+            <div class="p-12 border-8 border-b-0 rounded-full border-l-green-500 border-t-yellow-500 border-r-red-500">
+                <div class="w-64 h-64 rounded-full">
+                    <img id="rotateImage" src="/public/images/marker.png" alt="">
+                </div>
+            </div>
+            <div class="tooltip tooltip-right tooltip-error"
+                data-tip="Product should be avoided to prevent any fatal consequences">
+                <button class="mb-2 bg-red-200 border-none btn-error btn">Higher Risk</button>
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        // Example data for rotation in degrees, substitute this with the actual data you'll receive
+        const rotationData = 120; // You can replace this with your dynamic data
+
+        // Apply the rotation to the image
+        document.getElementById("rotateImage").style.transform = `rotate(${rotationData}deg)`;
+    </script>
+</body>
+
+</html>
