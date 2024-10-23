@@ -17,7 +17,7 @@ app.get('/',(req,res)=>{
 
 app.get('/report/:barcode',controller.report )
 
-app.get('/reportGenerate/:barcode',controller.generate)
+// app.get('/reportGenerate/:barcode',controller.generate)
 
 app.get('/wifi',controller.wifi)
 
