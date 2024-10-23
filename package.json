@@ -5,8 +5,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build:css": "npx tailwindcss -i ./style.css -o ./public/stylesheets/output.css --watch",
-    "build": "echo 'No build step needed'",
-    "postinstall": "npx puppeteer-core browsers install && npx puppeteer browsers install chrome"
+    "build": "echo 'No build step needed'"
   },
   "author": "roshanleharwani",
   "license": "MIT",
