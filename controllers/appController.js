@@ -4,7 +4,9 @@ const fs = require('node:fs')
 const puppeteer = require('puppeteer')
 const path = require('path');
 const QRCode = require('qrcode');
-const bodyParser = require('body-parser');
+
+require('dotenv').config()
+
 
 exports.generate = async (req, res) => {
   const barcode = req.params.barcode;
@@ -68,7 +70,13 @@ exports.generate = async (req, res) => {
     
     
     scraper = async (topic)=> {
-      const browser = await puppeteer.launch({ headless: true, args: ['--no-sandbox', '--disable-setuid-sandbox'] });
+      const browser = await puppeteer.launch({ headless: true, args: ['--no-sandbox', '--disable-setuid-sandbox', "--single-process",
+        "--no-zygote",],executablePath:
+      process.env.NODE_ENV === "production"
+        ? process.env.PUPPETEER_EXECUTABLE_PATH
+        : puppeteer.executablePath(),
+   });
+        
       const page = await browser.newPage();
       
       // Construct the search URL
