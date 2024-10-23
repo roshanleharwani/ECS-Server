@@ -107,7 +107,7 @@ exports.generate = async (req, res) => {
   }
 
 // File path where barcode data will be stored
-const cacheFilePath = path.join(__dirname, '../cache/barcodeCache.json');
+const cacheFilePath = path.join(__dirname, '/cache/barcodeCache.json');
 
 // Helper to read the file
 const readCacheFile = () => {
