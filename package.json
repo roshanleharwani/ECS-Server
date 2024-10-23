@@ -5,7 +5,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build:css": "npx tailwindcss -i ./style.css -o ./public/stylesheets/output.css --watch",
-    "build": "echo 'No build step needed'"
+    "build": "echo 'No build step needed'",
+    "postinstall": "npx puppeteer install"
   },
   "author": "roshanleharwani",
   "license": "MIT",
