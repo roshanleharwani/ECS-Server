@@ -107,7 +107,7 @@ exports.generate = async (req, res) => {
   }
 
 // File path where barcode data will be stored
-const cacheFilePath = path.join(__dirname, '/cache/barcodeCache.json');
+const cacheFilePath = path.join(__dirname, '../cache/barcodeCache.json');
 
 // Helper to read the file
 const readCacheFile = () => {
@@ -126,18 +126,18 @@ const writeCacheFile = (data) => {
 // Function to handle report generation
 exports.report = async (req, res) => {
   const barcode = req.params.barcode;
-  const uri = `https://world.openfoodfacts.org/api/v1/product/${barcode}.json`;
-
+  
   try {
-      // Step 1: Check if barcode data exists in file
-      let cache = readCacheFile();
-
-      if (cache[barcode]) {
-          // Barcode data exists, render the report
-          console.log('Cache hit for barcode:', barcode);
-          const references = await scraper(cache[barcode].productName + ' health Impacts');
-          return res.render('report', { data: cache[barcode], references });
-      }
+    // Step 1: Check if barcode data exists in file
+    let cache = readCacheFile();
+    
+    if (cache[barcode]) {
+      // Barcode data exists, render the report
+      console.log('Cache hit for barcode:', barcode);
+      const references = await scraper(cache[barcode].productName + ' health Impacts');
+      return res.render('report', { data: cache[barcode], references });
+    }
+    const uri = `https://world.openfoodfacts.org/api/v1/product/${barcode}.json`;
 
       // Step 2: Fetch product data from the API if not cached
       console.log('Cache miss for barcode:', barcode);
