@@ -36,7 +36,7 @@
     Report</button>
   <main class="flex flex-col items-center justify-center">
     <div class="self-start p-2 px-4 m-4 font-sans text-5xl font-bold text-black border-b-4 border-green-600">
-      <%= data.name %>
+      <%= data.productName %>
     </div>
 
     <!-- Product Categories -->
@@ -83,7 +83,7 @@
 
         <div class="border-8 border-b-0 rounded-full md:p-12 border-l-green-500 border-t-yellow-500 border-r-red-500">
           <div class="flex items-center justify-center w-48 h-48 rounded-full md:w-64 md:h-64">
-            <img id="rotateImage" class="select-none h-36 md:h-full " src="/public/images/marker.png" alt="">
+            <img id="rotateImage" class="select-none h-36 md:h-full " src="/images/marker.png" alt="">
           </div>
         </div>
         <div class="tooltip tooltip-right before:bg-red-300 before:text-black before:text-base avoid"
@@ -200,7 +200,15 @@
   document.getElementById('downloadBtn').addEventListener('click', function () {
     var element = document.getElementById('report-content');
     var downloadBtn = document.getElementById('downloadBtn');
-
+    const value = `<%= data.data.consumptionIndicator %>`;
+    document.getElementById("rotateImage").style.transform = `rotate(${value}deg)`;
+    if (value == 0) {
+      document.querySelector(".safe").classList.remove("md:tooltip-open");
+    } else if (value == 90) {
+      document.querySelector(".caution").classList.remove("md:tooltip-open");
+    } else if (value == 180) {
+      document.querySelector(".avoid").classList.remove("md:tooltip-open");
+    }
     // Temporarily hide the download button
     downloadBtn.style.display = 'none';
 
@@ -209,8 +217,8 @@
       html2pdf()
         .from(element)
         .set({
-          margin: [0, 0, 0, 0], // Set margins to 0 to remove extra spacing
-          filename: `<%=data.name%>-Report.pdf`,
+          margin: [0, 0, 0, 0],
+          filename: `<%=data.productName %>-Report.pdf`,
           image: { type: 'jpeg', quality: 0.98 },
           html2canvas: { scale: 2 },
           jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
@@ -218,9 +226,18 @@
         .save()
         .then(function () {
           // Show the download button again after the PDF is generated
+          const value = `<%= data.data.consumptionIndicator %>`;
+          document.getElementById("rotateImage").style.transform = `rotate(${value}deg)`;
+          if (value == 0) {
+            document.querySelector(".safe").classList.add("md:tooltip-open");
+          } else if (value == 90) {
+            document.querySelector(".caution").classList.add("md:tooltip-open");
+          } else if (value == 180) {
+            document.querySelector(".avoid").classList.add("md:tooltip-open");
+          }
           downloadBtn.style.display = 'block';
         });
-    }, 100); // Short delay to allow button to disappear
+    }, 350);
   });
 </script>
 <script>

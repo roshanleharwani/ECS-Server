@@ -1,0 +1,535 @@
+{
+  "5449000000996": {
+    "productName": "Coca-Cola",
+    "data": {
+      "productCategory": [
+        "Soft Drinks",
+        "Beverages",
+        "Carbonated Drinks"
+      ],
+      "productInterestingFacts": [
+        "Coca-Cola was first introduced in the late 19th century as a patent medicine.",
+        "Coca-Cola is available in over 200 countries worldwide with a diverse range of flavours.",
+        "Coca-Cola is one of the most recognized and consumed beverage brands globally."
+      ],
+      "consumptionIndicator": 90,
+      "ingredients": [
+        {
+          "Water": {
+            "description": "Essential component of human body and major ingredient.",
+            "effects": [
+              "Promotes hydration",
+              "Maintains bodily functions",
+              "Flushes out toxins"
+            ]
+          }
+        },
+        {
+          "Sugar": {
+            "description": "Adds sweetness and contributes to caloric content.",
+            "effects": [
+              "Increases risk of obesity",
+              "Raises blood sugar levels",
+              "Contributes to dental cavities"
+            ]
+          }
+        },
+        {
+          "Carbon Dioxide": {
+            "description": "Creates fizz and carbonation in the beverage.",
+            "effects": [
+              "May lead to bloating or gas in some individuals",
+              "Neutral effect on overall health",
+              "Can be detrimental in excessive consumption"
+            ]
+          }
+        },
+        {
+          "Colour E150d": {
+            "description": "Artificial colouring that gives Coca-Cola its distinct colour.",
+            "effects": [
+              "Linked to cancer risks in animal studies",
+              "Potential allergy in some individuals",
+              "Neutral effect in moderate consumption"
+            ]
+          }
+        },
+        {
+          "Phosphoric Acid": {
+            "description": "Contributes to the tangy and acidic taste of Coca-Cola.",
+            "effects": [
+              "May lead to tooth erosion or decay in excessive consumption",
+              "Neutral effect in moderate consumption",
+              "Potential risks of kidney stones"
+            ]
+          }
+        },
+        {
+          "Natural Flavourings": {
+            "description": "Non-specific term that includes natural essences or extracts.",
+            "effects": [
+              "Variable effects depending on specific flavourings used",
+              "Potential allergy in some individuals",
+              "General neutral effect"
+            ]
+          }
+        },
+        {
+          "Caffeine": {
+            "description": "A stimulant added to promote alertness and energy.",
+            "effects": [
+              "May disrupt sleep patterns",
+              "Raises blood pressure in some individuals",
+              "Increases alertness and boosts energy"
+            ]
+          }
+        }
+      ],
+      "healthRecommendations": [
+        "Consume Coca-Cola in moderation (1-2 servings a week) due to its high sugar content and artificial ingredients.",
+        "Balance Coca-Cola consumption with a healthy diet and regular exercise routine.",
+        "Consider alternative beverages, such as water or fruit juices, to minimize exposure to artificial ingredients and added sugars.",
+        "Avoid mixing Coca-Cola with other caffeinated beverages or medications to avoid increased caffeine effects."
+      ],
+      "betterProductAlternatives": [
+        {
+          "Lemonade": {
+            "briefBenefit": "Natural ingredients, lower sugar content and versatility in preparing homemade versions."
+          }
+        },
+        {
+          "Nimbu Pani": {
+            "briefBenefit": "A common Indian lemonade drink made with natural ingredients like lemons, water and sugar or honey."
+          }
+        },
+        {
+          "Herbal Iced Tea": {
+            "briefBenefit": "A low-calorie, non-carbonated beverage that promotes antioxidant and flavonoid intake."
+          }
+        }
+      ]
+    }
+  },
+  "8901207900839": {
+    "productName": "Hajmola",
+    "data": {
+      "productCategory": [
+        "Digestives",
+        "Herbal Drinks",
+        "Ayurvedic Products"
+      ],
+      "productInterestingFacts": [
+        "Relieves Gas and Indigestion",
+        "Calms Digestive Disorders Instantly",
+        "No artificial preservatives or sweeteners used"
+      ],
+      "consumptionIndicator": 0,
+      "ingredients": [
+        {
+          "Piper Nigrum (Maricha)": {
+            "description": "Used as a digestive stimulant, reduces nausea and stomach discomfort",
+            "effects": [
+              "Can cause stomach upset if taken in excess",
+              "May interact with certain medications",
+              "Long-term use can cause kidney damage"
+            ]
+          }
+        },
+        {
+          "Zingiber Officinale (Shunthi)": {
+            "description": "A natural anti-inflammatory that reduces nausea and inflammation",
+            "effects": [
+              "Can cause heartburn in some individuals",
+              "May lower blood sugar levels",
+              "Long-term use can cause stomach upset"
+            ]
+          }
+        },
+        {
+          "Piper Longum (Pippali)": {
+            "description": "Used as a carminative that reduces flatulence and bloating",
+            "effects": [
+              "Can cause stomach upset in some individuals",
+              "May interact with certain medications",
+              "Long-term use can cause kidney damage"
+            ]
+          }
+        },
+        {
+          "Citrus Limon (Nimbu Saar)": {
+            "description": "Used as a natural antacid that reduces acidity and flatulence",
+            "effects": [
+              "Can cause tooth erosion if taken in excess",
+              "May interact with certain medications",
+              "Long-term use can cause stomach upset"
+            ]
+          }
+        },
+        {
+          "Cuminum Cyminum (Shvetajiraka)": {
+            "description": "Used as a carminative that reduces flatulence and bloating",
+            "effects": [
+              "Can cause stomach upset in some individuals",
+              "May interact with certain medications",
+              "Long-term use can cause kidney damage"
+            ]
+          }
+        },
+        {
+          "Samudra Lavana": {
+            "description": "Used as a natural salt that helps in digestion",
+            "effects": [
+              "Can cause high blood pressure if taken in excess",
+              "May interact with certain medications",
+              "Long-term use can cause kidney damage"
+            ]
+          }
+        },
+        {
+          "Sauvarchala Lavana": {
+            "description": "Used as a natural salt that helps in digestion",
+            "effects": [
+              "Can cause high blood pressure if taken in excess",
+              "May interact with certain medications",
+              "Long-term use can cause kidney damage"
+            ]
+          }
+        },
+        {
+          "Narasara": {
+            "description": "Used as a natural antacid that reduces acidity and flatulence",
+            "effects": [
+              "Can cause stomach upset in some individuals",
+              "May interact with certain medications",
+              "Long-term use can cause kidney damage"
+            ]
+          }
+        }
+      ],
+      "healthRecommendations": [
+        "Consume after meals",
+        "Do not consume with milk or water",
+        "Avoid consuming in excess"
+      ],
+      "betterProductAlternatives": [
+        {
+          "Himalayan Digestive Tea": {
+            "briefBenefit": "Natural and caffeine-free, helps in digestion and relieves gas"
+          }
+        },
+        {
+          "Dabur Pudin Hara Pearls": {
+            "briefBenefit": "Natural and antispasmodic, relieves gas and indigestion"
+          }
+        },
+        {
+          "Maharishi Ayurveda Pudina": {
+            "briefBenefit": "Natural and antioxidant-rich, relieves gas and indigestion"
+          }
+        }
+      ]
+    }
+  },
+  "8901491101837": {
+    "productName": "Lays Classics Salted 20rs",
+    "data": {
+      "productCategory": [
+        "Snack",
+        "Junk Food",
+        "Fried Chips"
+      ],
+      "productInterestingFacts": [
+        "Highly Addictive, Stimulates Cravings",
+        "Fried Chips Contribute to Weight Gain",
+        "Linked to Digestive Issues in Some Individuals"
+      ],
+      "consumptionIndicator": 90,
+      "ingredients": [
+        {
+          "Potato": {
+            "description": "Potato is a complex carbohydrate rich in fiber and minerals.",
+            "effects": [
+              "May Increase Blood Sugar Levels in Excess",
+              "Supports Healthy Digestion due to Fiber Content",
+              "Rich in Antioxidants"
+            ]
+          }
+        },
+        {
+          "Edible Vegetable Oil (Palmolein Oil, Rice Bran Oil)": {
+            "description": "High calorie oil blend used for frying, high in saturated fats.",
+            "effects": [
+              "Increases Risk of Heart Disease due to High Saturated Fat Content",
+              "May Cause Insulin Resistance and Type 2 Diabetes",
+              "Linked to High Cholesterol Levels"
+            ]
+          }
+        },
+        {
+          "Salt (1%)": {
+            "description": "Used as a flavor enhancer, high sodium content.",
+            "effects": [
+              "May Contribute to High Blood Pressure in Excess",
+              "Increases Risk of Fluid Retention and Bloating",
+              "Essential in Small Amounts for Proper Hydration"
+            ]
+          }
+        }
+      ],
+      "healthRecommendations": [
+        "Moderate intake due to high calorie, sodium, and saturated fat content.",
+        "Choose healthier alternatives like baked or low sodium chips.",
+        "Consider portion control and balance with nutrient-rich meals.",
+        "Limit or avoid consumption in cases of high blood pressure or heart health concerns."
+      ],
+      "betterProductAlternatives": [
+        {
+          "Kalee Bites": {
+            "briefBenefit": "Oven-baked kale and seaweed snack, rich in vitamins and minerals."
+          }
+        },
+        {
+          "Quaker Oats Crunchy Chips": {
+            "briefBenefit": "Whole grain snack with oats, sesame seeds, and spices, baked, not fried."
+          }
+        },
+        {
+          "Haldiram's Low Calories Chana Jor Garam": {
+            "briefBenefit": "Low-calorie roasted gram snack, rich in fiber, protein and minerals."
+          }
+        }
+      ]
+    }
+  },
+  "5449000234636": {
+    "productName": "Sprite  LEMON-LIME  FLAVOURED DRINK 2 litre",
+    "data": {
+      "productCategory": [
+        "Carbonated Drinks",
+        "Soft Drinks",
+        "Beverages"
+      ],
+      "productInterestingFacts": [
+        " Sprite Lemon-Lime Flavoured Drink contains citric acid and preservatives",
+        "High sugar content contributes to several health issues like obesity and diabetes",
+        "Excessive consumption may lead to digestive problems and nutrient deficiencies"
+      ],
+      "consumptionIndicator": 180,
+      "ingredients": [
+        {
+          "Carbonated Water": {
+            "description": "Water that has been infused with carbon dioxide gas",
+            "effects": [
+              "May lead to digestive problems",
+              "Can erode tooth enamel",
+              "Linked to osteoporosis"
+            ]
+          }
+        },
+        {
+          "Sugar (Sucrose)": {
+            "description": "A sweet crystalline substance extracted from sugarcane or sugar beets",
+            "effects": [
+              "Contributes to weight gain and obesity",
+              "Increases risk of type 2 diabetes",
+              "Linked to heart disease and certain cancers"
+            ]
+          }
+        },
+        {
+          "Citric Acid": {
+            "description": "A weak organic acid found naturally in citrus fruits like lemons and oranges",
+            "effects": [
+              "May erode tooth enamel if consumed excessively",
+              "Can cause digestive problems like heartburn and bloating",
+              "Linked to nutrient deficiencies"
+            ]
+          }
+        },
+        {
+          "Natural Flavourings": {
+            "description": "Flavour enhancers derived from natural sources like fruits and herbs",
+            "effects": [
+              "May cause allergic reactions or intolerance in some individuals",
+              "Can interact with certain medications",
+              "Generally considered safe in moderation"
+            ]
+          }
+        },
+        {
+          "Sodium Benzoate": {
+            "description": "A synthetic preservative used to extend shelf life and prevent spoilage",
+            "effects": [
+              "May cause allergic reactions or intolerance in some individuals",
+              "Linked to cell damage and increased risk of certain diseases",
+              "Can interact with certain medications"
+            ]
+          }
+        },
+        {
+          "Calcium Disodium EDTA": {
+            "description": "A synthetic preservative used to prevent spoilage and extend shelf life",
+            "effects": [
+              "May cause allergic reactions or intolerance in some individuals",
+              "Linked to cell damage and increased risk of certain diseases",
+              "Can interact with certain medications"
+            ]
+          }
+        },
+        {
+          "Caramel Colour IV": {
+            "description": "A synthetic colouring agent derived from ammonia and sugar",
+            "effects": [
+              "May cause allergic reactions or intolerance in some individuals",
+              "Linked to cancer and other health problems in animal studies",
+              "Can interact with certain medications"
+            ]
+          }
+        }
+      ],
+      "healthRecommendations": [
+        "Consume in moderation due to high sugar content",
+        "Avoid excessive consumption, especially for those with pre-existing health conditions",
+        "Pair with a balanced diet and regular physical activity to minimize negative effects",
+        "Consider alternative beverages like water, milk, or 100% fruit juice"
+      ],
+      "betterProductAlternatives": [
+        {
+          "Himalayan Sparkling Water": {
+            "briefBenefit": "A healthier, low-calorie alternative with natural minerals and no added sugar"
+          }
+        },
+        {
+          "Paper Boat juices": {
+            "briefBenefit": "A range of 100% fruit juices without added sugar or preservatives"
+          }
+        },
+        {
+          "Sulekha's Natural Lemonade": {
+            "briefBenefit": "A homemade-style lemonade with real lemons and minimal sugar content"
+          }
+        }
+      ]
+    }
+  },
+  "8801062161881": {
+    "productName": "Choco Pie",
+    "data": {
+      "productCategory": [
+        "Baked Goods",
+        "Snack Foods",
+        "Desserts"
+      ],
+      "productInterestingFacts": [
+        "Choco Pie is a popular South Korean snack food introduced in 1973.",
+        "Choco Pie consists of two chocolate-coated marshmallow snacks.",
+        "This product has a significant following worldwide due to its nostalgic appeal."
+      ],
+      "consumptionIndicator": 90,
+      "ingredients": [
+        {
+          "Enriched Wheat Flour": {
+            "description": "Bleached and enriched flour with iron, thiamine, and folate.",
+            "effects": [
+              "Digestive issues in gluten-intolerant individuals",
+              "Nutrient imbalances due to processed nature",
+              "Risk of empty calorie consumption"
+            ]
+          }
+        },
+        {
+          "Sugar": {
+            "description": "Granulated sugar used to add sweetness to the product.",
+            "effects": [
+              "Contributes to dietary issues like obesity and diabetes",
+              "Can lead to energy crashes and mood swings",
+              "Linked to increased risk of heart disease"
+            ]
+          }
+        },
+        {
+          "Corn Syrup": {
+            "description": "A sweet liquid derived from corn starch.",
+            "effects": [
+              "May contribute to increased fructose consumption",
+              "Linked to metabolic disorders and insulin resistance",
+              "Potential impact on cognitive function"
+            ]
+          }
+        },
+        {
+          "Vegetable Oil": {
+            "description": "A blend of oils including palm and soybean oil.",
+            "effects": [
+              "High in saturated and omega-6 fatty acids",
+              "May lead to increased inflammation and oxidative stress",
+              "Potential impact on cardiovascular health"
+            ]
+          }
+        },
+        {
+          "Cocoa Mass": {
+            "description": "The base ingredient for chocolate production.",
+            "effects": [
+              "Rich in antioxidants and flavonoids",
+              "Potential cognitive benefits",
+              "May improve heart health due to flavonoid content"
+            ]
+          }
+        },
+        {
+          "Milk Powder": {
+            "description": "Dehydrated milk used in marshmallow production.",
+            "effects": [
+              "May contribute to increased saturated fat and calorie intake",
+              "Potential allergen and intolerance issues",
+              "Calcium content beneficial for bone health"
+            ]
+          }
+        },
+        {
+          "Soy Lecithin": {
+            "description": "A soy-derived emulsifier used in chocolate production.",
+            "effects": [
+              "Generally considered safe in small quantities",
+              "May help lower cholesterol levels",
+              "Potential allergen for those with soy sensitivities"
+            ]
+          }
+        },
+        {
+          "TBHQ (Tertiary Butylhydroquinone)": {
+            "description": "An artificial preservative used to extend shelf life.",
+            "effects": [
+              "Potential neurotoxic and carcinogenic effects",
+              "May cause reproductive issues and DNA damage",
+              "Contributes to increased processed food consumption"
+            ]
+          }
+        }
+      ],
+      "healthRecommendations": [
+        "Moderation is key due to high calorie, sugar, and saturated fat content.",
+        "Consider choosing baked goods with low sugar content and whole grain flours.",
+        "Consult a healthcare professional or registered dietician before consuming if you have specific dietary requirements or allergies."
+      ],
+      "betterProductAlternatives": [
+        {
+          "Parle's Hide and Seek Bourbon": {
+            "briefBenefit": "Lower in saturated fats and calories compared to Choco Pie"
+          }
+        },
+        {
+          "5 Star Choco Crunch": {
+            "briefBenefit": "Rich in crunchy texture and relatively lower in added sugars"
+          }
+        },
+        {
+          "Kinder Chocolate Slice": {
+            "briefBenefit": "Whole wheat-based and with lower saturated fat content compared to Choco Pie"
+          }
+        }
+      ]
+    }
+  }
+}

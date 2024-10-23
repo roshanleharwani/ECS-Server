@@ -2,7 +2,7 @@ const axios = require('axios')
 const { Groq } = require('groq-sdk'); 
 const fs = require('node:fs')
 const puppeteer = require('puppeteer')
-const path = require('path')
+const path = require('path');
 const QRCode = require('qrcode');
 const bodyParser = require('body-parser');
 
@@ -106,78 +106,99 @@ exports.generate = async (req, res) => {
     return searchResults;
   }
 
+// File path where barcode data will be stored
+const cacheFilePath = path.join(__dirname, '../cache/barcodeCache.json');
+
+// Helper to read the file
+const readCacheFile = () => {
+    if (fs.existsSync(cacheFilePath)) {
+        const fileData = fs.readFileSync(cacheFilePath);
+        return JSON.parse(fileData);
+    }
+    return {};
+};
+
+// Helper to write data back to file
+const writeCacheFile = (data) => {
+    fs.writeFileSync(cacheFilePath, JSON.stringify(data, null, 2)); // Pretty print the JSON
+};
+
+// Function to handle report generation
 exports.report = async (req, res) => {
-    const barcode = 	req.params.barcode;
-    const uri = `https://world.openfoodfacts.org/api/v1/product/${barcode}.json`;
-  
-    async function getProductData() {
-      try {
-        const response = await axios.get(uri);
-        const data = response.data;
-  
-        const groq = new Groq({
-          apiKey: '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',
-          // apiKey: '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',
-          
-        });
-  
-        const template = `{
-            "productCategory": [2-3 categories],
-            "productInterestingFacts": [2-3 each fact of min 10 words],
-            "consumptionIndicator": [if safe give 0 else if concern give 90 else if avoid give 180  ]
-            "ingredients": [
-              {
-                "ingredient1": {
-                  "description": "briefDescription of min 10 words",
-                  "effects": [2-3 long term effects]
-                }
-              }
-            ],
-            "healthRecommendations": [3-4 health recommendations],
-            "betterProductAlternatives": [3-4 alternatives with respect to indian perspective  of same category
-              {
-                "alternativeName": {
-                  "briefBenefit": "briefBenefitDescription"
-                }
-              }
-            ]
-          }`;
-  
-        const productName = data['product']['product_name'];
-        const prompt = `You are a Nutrition expert. Provide a JSON response only, following this format: ${template}. Include all ingredients with health impacts. If ingredients are encoded, give their full names. Use the product name ${productName} and ingredients from ${data['product']['ingredients_text']}.`
-        // console.log(prompt)
-        const chatCompletion = await groq.chat.completions.create({
-          messages: [
-            {
-              role: 'user',
-              content: prompt,
-            },
-          ],
-          model: 'llama-3.1-70b-versatile',
-          // max_tokens: 8000,
-          // response_format: {"type": "json_object"}
-          // temperature:0.5
-        });
-  
-        const jsonObj = await JSON.parse(chatCompletion.choices[0]?.message?.content || '{}');
-        return { name: productName, data: jsonObj };
-      } catch (error) {
-        console.error('Error fetching data or completing chat:', error);
-        return null;
+  const barcode = req.params.barcode;
+  const uri = `https://world.openfoodfacts.org/api/v1/product/${barcode}.json`;
+
+  try {
+      // Step 1: Check if barcode data exists in file
+      let cache = readCacheFile();
+
+      if (cache[barcode]) {
+          // Barcode data exists, render the report
+          console.log('Cache hit for barcode:', barcode);
+          const references = await scraper(cache[barcode].productName + ' health Impacts');
+          return res.render('report', { data: cache[barcode], references });
       }
-    }
-  
-    
-    const data = await getProductData(); // Add 'await' here
-  
-    
-    if (!data) {
-      return res.status(500).render('error',{barcode:barcode});
-    }
-    const references = await scraper(data.name + 'health Impacts')
-  
-    res.render('report', { data: data,references:references });
+
+      // Step 2: Fetch product data from the API if not cached
+      console.log('Cache miss for barcode:', barcode);
+      const response = await axios.get(uri);
+      const productData = response.data;
+
+      // Check if product data is valid
+      if (!productData || !productData.product) {
+          throw new Error('Product data is missing or invalid');
+      }
+
+      // Prepare the Groq prompt
+      const groq = new Groq({
+          apiKey: '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',
+      });
+
+      const template = `{
+          "productCategory": [2-3 categories],
+          "productInterestingFacts": [2-3 each fact of min 10 words],
+          "consumptionIndicator": [if safe give 0 else if concern give 90 else if avoid give 180],
+          "ingredients": [
+            {
+              "ingredient1": {
+                "description": "briefDescription of min 10 words",
+                "effects": [2-3 long term effects]
+              }
+            }
+          ],
+          "healthRecommendations": [3-4 health recommendations],
+          "betterProductAlternatives": [3-4 alternatives with respect to indian perspective of same category
+            {
+              "alternativeName": {
+                "briefBenefit": "briefBenefitDescription"
+              }
+            }
+          ]
+      }`;
+
+      const productName = productData['product']['product_name'];  // Use productData here
+      const prompt = `You are a Nutrition expert. Provide a JSON response only, following this format: ${template}. Include all ingredients with health impacts. If ingredients are encoded, give their full names. Use the product name ${productName} and ingredients from ${productData['product']['ingredients_text']}.`;
+
+      const chatCompletion = await groq.chat.completions.create({
+          messages: [{ role: 'user', content: prompt }],
+          model: 'llama-3.1-70b-versatile',
+      });
+
+      const productDetails = JSON.parse(chatCompletion.choices[0]?.message?.content || '{}');
+
+      // Step 3: Cache the fetched product data in the file
+      cache[barcode] = { productName, data: productDetails };
+      writeCacheFile(cache);  // Persist updated cache to file
+
+      // Render the report
+      const references = await scraper(productName + ' health Impacts');
+      res.render('report', { data: productDetails, references });
+
+  } catch (error) {
+      console.error('Error generating report:', error); // Log the error object
+      res.status(500).render('error',{barcode:barcode});
   }
+};
 
   exports.wifi = async (req,res)=>{
 
