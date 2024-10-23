@@ -6,7 +6,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build:css": "npx tailwindcss -i ./style.css -o ./public/stylesheets/output.css --watch",
     "build": "echo 'No build step needed'",
-    "postinstall": "npx puppeteer-core browsers install"
+    "postinstall": "npx puppeteer-core browsers install && npx puppeteer browsers install chrome"
   },
   "author": "roshanleharwani",
   "license": "MIT",
@@ -19,8 +19,7 @@
     "groq-sdk": "^0.7.0",
     "node-fetch": "^2.7.0",
     "puppeteer": "^23.6.0",
-    "qrcode": "^1.5.4",
-    "redis": "^4.7.0"
+    "qrcode": "^1.5.4"
   },
   "devDependencies": {
     "daisyui": "^4.12.10",
